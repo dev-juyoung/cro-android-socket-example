@@ -150,5 +150,21 @@ public class ChatActivity extends BaseActivity {
     void sendButtonTouchUp() {
         String sendMessage = messageEditText.getText().toString();
         Dlog.d("message: " + sendMessage);
+
+        // 서버로 전송할 데이터 생성 및 메시지 이벤트 보냄.
+        JSONObject sendData = new JSONObject();
+        try {
+            sendData.put(Constants.SEND_DATA_USERNAME, userName);
+            sendData.put(Constants.SEND_DATA_MESSAGE, sendMessage);
+            mSocket.emit(Constants.EVENT_MESSAGE, sendData);
+
+            // 전송 후, EditText 초기화
+            messageEditText.setText(null);
+
+            // 본인의 메시지는 서버에서 전달받지 않고, 바로 생성한다.
+            ChatMessage message = new ChatMessage(null, Constants.MESSAGE_TYPE_SELF, userName, sendMessage);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }
