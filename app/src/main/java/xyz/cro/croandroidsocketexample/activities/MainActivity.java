@@ -44,6 +44,9 @@ public class MainActivity extends BaseActivity {
         getSupportActionBar().setTitle("CroAndroidSocketExample");
 
         usernameInputLayout.setErrorEnabled(false);
+        enteredButton.setEnabled(false);
+        enteredButton.setTextColor(disableTextColor);
+
         usernameEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}

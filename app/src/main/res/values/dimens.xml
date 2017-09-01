@@ -8,7 +8,12 @@
     <dimen name="default_space">16dp</dimen>
     <dimen name="lg_space">24dp</dimen>
 
+    <dimen name="xs_fontsize">10dp</dimen>
     <dimen name="sm_fontsize">12dp</dimen>
     <dimen name="default_fontsize">14dp</dimen>
     <dimen name="lg_fontsize">16dp</dimen>
+
+    <dimen name="default_button_size">36dp</dimen>
+
+    <dimen name="message_view_min_height">36dp</dimen>
 </resources>

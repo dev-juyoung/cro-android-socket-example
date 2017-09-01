@@ -10,4 +10,62 @@
         layout="@layout/toolbar_base"
         />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messagesView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="true"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_line"
+        android:background="@color/lineDefault"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/sm_space"
+        android:minHeight="@dimen/message_view_min_height"
+        android:background="@drawable/send_contents_container">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/messageEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/sm_space"
+                android:padding="@dimen/sm_space"
+                android:textSize="@dimen/default_fontsize"
+                android:textColor="@color/textDefault"
+                android:textColorHint="@color/textHint"
+                android:background="@drawable/message_edittext"
+                />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/sendButton"
+                android:layout_width="@dimen/default_button_size"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:text="@string/sent_button"
+                android:textSize="@dimen/xs_fontsize"
+                android:textColor="@color/textEnabled"
+                android:textStyle="bold"
+                android:background="@drawable/entered_button"
+                style="@style/Base.Widget.AppCompat.Button.Borderless"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </LinearLayout>

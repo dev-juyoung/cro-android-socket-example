@@ -1,6 +1,10 @@
 package xyz.cro.croandroidsocketexample.activities;
 
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 
 import org.json.JSONException;
@@ -8,6 +12,9 @@ import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 
+import butterknife.BindColor;
+import butterknife.BindView;
+import butterknife.OnClick;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -18,8 +25,17 @@ import xyz.cro.croandroidsocketexample.models.ChatMessage;
 import xyz.cro.croandroidsocketexample.utils.Dlog;
 
 public class ChatActivity extends BaseActivity {
-    private Socket mSocket;
+    @BindView(R.id.messageEditText)
+    AppCompatEditText messageEditText;
+    @BindView(R.id.sendButton)
+    AppCompatButton sendButton;
 
+    @BindColor(R.color.textEnabled)
+    int enableTextColor;
+    @BindColor(R.color.textDisabled)
+    int disableTextColor;
+
+    private Socket mSocket;
     private String userName;
 
     @Override
@@ -46,6 +62,27 @@ public class ChatActivity extends BaseActivity {
     private void initializeView() {
         getSupportActionBar().setTitle("Cro 채팅방");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        sendButton.setEnabled(false);
+        sendButton.setTextColor(disableTextColor);
+        messageEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() > 0) {
+                    sendButton.setEnabled(true);
+                    sendButton.setTextColor(enableTextColor);
+                } else {
+                    sendButton.setEnabled(false);
+                    sendButton.setTextColor(disableTextColor);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {}
+        });
     }
 
     private void setupSocketClient() {
@@ -107,5 +144,11 @@ public class ChatActivity extends BaseActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @OnClick(R.id.sendButton)
+    void sendButtonTouchUp() {
+        String sendMessage = messageEditText.getText().toString();
+        Dlog.d("message: " + sendMessage);
     }
 }

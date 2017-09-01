@@ -47,7 +47,6 @@
             android:textColor="@color/textEnabled"
             android:textStyle="bold"
             android:background="@drawable/entered_button"
-            android:enabled="false"
             />
 
     </LinearLayout>
