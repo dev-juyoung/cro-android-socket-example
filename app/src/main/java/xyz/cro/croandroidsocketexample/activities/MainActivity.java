@@ -1,5 +1,6 @@
 package xyz.cro.croandroidsocketexample.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatButton;
@@ -12,7 +13,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import xyz.cro.croandroidsocketexample.R;
 import xyz.cro.croandroidsocketexample.bases.BaseActivity;
-import xyz.cro.croandroidsocketexample.utils.Dlog;
+import xyz.cro.croandroidsocketexample.bases.Constants;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.usernameInputLayout)
@@ -22,6 +23,8 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.enteredButton)
     AppCompatButton enteredButton;
 
+    @BindColor(R.color.colorWhite)
+    int toolbarTitleColor;
     @BindColor(R.color.textEnabled)
     int enableTextColor;
     @BindColor(R.color.textDisabled)
@@ -37,6 +40,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initializeView() {
+        getToolbar().setTitleTextColor(toolbarTitleColor);
         getSupportActionBar().setTitle("CroAndroidSocketExample");
 
         usernameInputLayout.setErrorEnabled(false);
@@ -62,7 +66,13 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.enteredButton)
     void enteredButtonTouchUp() {
-        String username = usernameEditText.getText().toString();
-        Dlog.d("username: " + username);
+        String userName = usernameEditText.getText().toString();
+
+        Intent intent = new Intent(this, ChatActivity.class);
+        intent.putExtra(Constants.EXTRA_USERNAME, userName);
+        startActivity(intent);
+
+        // 기존에 입력된 닉네임 초기화
+        usernameEditText.setText(null);
     }
 }

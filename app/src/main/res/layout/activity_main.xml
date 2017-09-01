@@ -28,6 +28,8 @@
                 android:id="@+id/usernameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1"
                 android:hint="@string/username_hint"
                 android:textSize="@dimen/default_fontsize"
                 android:textColor="@color/textDefault"

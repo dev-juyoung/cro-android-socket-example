@@ -35,4 +35,12 @@ public class BaseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(null);
     }
+
+    public Toolbar getToolbar() {
+        if (toolbar == null) {
+            throw new NullPointerException("toolbar was not ready.");
+        }
+
+        return toolbar;
+    }
 }
