@@ -64,12 +64,11 @@ public class ChatActivity extends BaseActivity {
     private Emitter.Listener onConnect = new Emitter.Listener() {
         @Override
         public void call(Object... args) {
-            Dlog.d("success connection socket server");
             // 서버로 전송할 데이터 생성 및 채널 입장 이벤트 보냄.
             JSONObject sendData = new JSONObject();
             try {
                 sendData.put(Constants.SEND_DATA_USERNAME, userName);
-                mSocket.emit(Constants.EVENT_ENTERED);
+                mSocket.emit(Constants.EVENT_ENTERED, sendData);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
