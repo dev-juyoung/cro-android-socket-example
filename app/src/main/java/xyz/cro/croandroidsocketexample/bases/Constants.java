@@ -8,6 +8,7 @@ public class Constants {
     public static final String SOCKET_URL = "https://cro-socket-example.herokuapp.com";
     public static final String EVENT_ENTERED = "join-user";
     public static final String EVENT_SYSTEM = "system";
+    public static final String EVENT_MESSAGE = "chat-message";
 
     public static final String SEND_DATA_USERNAME = "username";
 

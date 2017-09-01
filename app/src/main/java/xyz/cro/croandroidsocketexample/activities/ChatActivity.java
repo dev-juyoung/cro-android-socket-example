@@ -53,6 +53,7 @@ public class ChatActivity extends BaseActivity {
             mSocket = IO.socket(Constants.SOCKET_URL);
             mSocket.on(Socket.EVENT_CONNECT, onConnect);
             mSocket.on(Constants.EVENT_SYSTEM, onMessageReceived);
+            mSocket.on(Constants.EVENT_MESSAGE, onMessageReceived);
 
             mSocket.connect();
         } catch (URISyntaxException e) {
