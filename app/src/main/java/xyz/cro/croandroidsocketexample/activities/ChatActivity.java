@@ -14,6 +14,7 @@ import io.socket.emitter.Emitter;
 import xyz.cro.croandroidsocketexample.R;
 import xyz.cro.croandroidsocketexample.bases.BaseActivity;
 import xyz.cro.croandroidsocketexample.bases.Constants;
+import xyz.cro.croandroidsocketexample.models.ChatMessage;
 import xyz.cro.croandroidsocketexample.utils.Dlog;
 
 public class ChatActivity extends BaseActivity {
@@ -51,6 +52,7 @@ public class ChatActivity extends BaseActivity {
         try {
             mSocket = IO.socket(Constants.SOCKET_URL);
             mSocket.on(Socket.EVENT_CONNECT, onConnect);
+            mSocket.on(Constants.EVENT_SYSTEM, onMessageReceived);
 
             mSocket.connect();
         } catch (URISyntaxException e) {
@@ -72,6 +74,26 @@ public class ChatActivity extends BaseActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    };
+
+    /**
+     * Message 전달 Listener
+     */
+    private Emitter.Listener onMessageReceived = new Emitter.Listener() {
+        @Override
+        public void call(Object... args) {
+            JSONObject rcvData = (JSONObject) args[0];
+            String userAction = rcvData.optString("action");
+            String messageType = rcvData.optString("type");
+            String messageOwner = rcvData.optJSONObject("data").optString("username");
+            String messageContent = rcvData.optJSONObject("data").optString("message");
+
+            ChatMessage message = new ChatMessage(userAction, messageType, messageOwner, messageContent);
+            Dlog.d("action: " + message.getUserAction());
+            Dlog.d("type: " + message.getMessageType());
+            Dlog.d("owner: " + message.getMessageOwner());
+            Dlog.d("message: " + message.getMessageContent());
         }
     };
 
