@@ -5,5 +5,7 @@ package xyz.cro.croandroidsocketexample.bases;
  */
 
 public class Constants {
+    public static final String SOCKET_URL = "http://192.168.0.6:3000";
+
     public static final String EXTRA_USERNAME = "username";
 }

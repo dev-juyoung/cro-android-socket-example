@@ -3,7 +3,7 @@
     package="xyz.cro.croandroidsocketexample">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    
+
     <application
         android:name=".bases.BaseApplication"
         android:allowBackup="true"
