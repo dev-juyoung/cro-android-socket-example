@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <color name="colorPrimary">#BED1DB</color>
+    <color name="colorPrimaryDark">#BED1DB</color>
+    <color name="colorAccent">#000000</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBrown">#463333</color>
+    <color name="colorEnabled">#FEEB34</color>
+    <color name="colorDisabled">#F9F9F9</color>
+
+    <color name="lineDefault">#E9E9E9</color>
+
+    <color name="textHint">#D7D7D7</color>
+    <color name="textDefault">#000000</color>
+    <color name="textEnabled">#523738</color>
+    <color name="textDisabled">#D7D7D7</color>
+
 </resources>

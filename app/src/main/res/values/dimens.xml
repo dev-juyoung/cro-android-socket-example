@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_line">1dp</dimen>
+
+    <dimen name="default_corner">4dp</dimen>
+
+    <dimen name="sm_space">8dp</dimen>
+    <dimen name="default_space">16dp</dimen>
+    <dimen name="lg_space">24dp</dimen>
+
+    <dimen name="sm_fontsize">12dp</dimen>
+    <dimen name="default_fontsize">14dp</dimen>
+    <dimen name="lg_fontsize">16dp</dimen>
+</resources>
