@@ -4,6 +4,7 @@
 
     <dimen name="default_corner">4dp</dimen>
 
+    <dimen name="ls_space">4dp</dimen>
     <dimen name="sm_space">8dp</dimen>
     <dimen name="default_space">16dp</dimen>
     <dimen name="lg_space">24dp</dimen>

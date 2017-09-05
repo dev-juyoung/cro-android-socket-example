@@ -17,7 +17,6 @@
             android:id="@+id/messageOwnerTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/sm_space"
             android:layout_marginBottom="@dimen/sm_space"
             android:textSize="@dimen/sm_fontsize"
             android:textColor="@color/textDefault"

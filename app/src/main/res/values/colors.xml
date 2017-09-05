@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#BED1DB</color>
-    <color name="colorPrimaryDark">#AFC1CA</color>
+    <color name="colorPrimary">#9FBED2</color>
+    <color name="colorPrimaryDark">#8199AA</color>
     <color name="colorAccent">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBrown">#463333</color>
     <color name="colorEnabled">#FEEB34</color>
     <color name="colorDisabled">#F9F9F9</color>
+    <color name="colorChatMessageBackground">#99BBD0</color>
 
-    <color name="lineDefault">#E9E9E9</color>
-    <color name="lineDark">#999999</color>
+    <color name="lineLight">#E9E9E9</color>
+    <color name="lineDefault">#89A8BC</color>
+    <color name="lineDark">#7797AB</color>
 
     <color name="textHint">#D7D7D7</color>
     <color name="textDefault">#000000</color>

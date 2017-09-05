@@ -6,7 +6,7 @@
     android:layout_marginBottom="@dimen/sm_space"
     android:padding="@dimen/sm_space"
     android:orientation="vertical"
-    android:background="#AFC1CA">
+    android:background="@color/lineDark">
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/messageTextView"
