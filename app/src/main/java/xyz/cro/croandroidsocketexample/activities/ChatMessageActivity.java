@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.View;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -99,6 +100,20 @@ public class ChatMessageActivity extends BaseActivity {
         messagesView.setHasFixedSize(true);
         messagesView.setLayoutManager(layoutManager);
         messagesView.setAdapter(mAdapter);
+
+        messagesView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int newLeft, int newTop, int newRight, int newBottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                if (newBottom < oldBottom) {
+                    messagesView.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            messagesView.smoothScrollToPosition(mAdapter.getItemCount());
+                        }
+                    }, 100);
+                }
+            }
+        });
     }
 
     private void setupSocketClient() {
