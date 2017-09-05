@@ -71,7 +71,7 @@ public class MainActivity extends BaseActivity {
     void enteredButtonTouchUp() {
         String userName = usernameEditText.getText().toString();
 
-        Intent intent = new Intent(this, ChatActivity.class);
+        Intent intent = new Intent(this, ChatMessageActivity.class);
         intent.putExtra(Constants.EXTRA_USERNAME, userName);
         startActivity(intent);
 

@@ -27,7 +27,7 @@ import xyz.cro.croandroidsocketexample.bases.Constants;
 import xyz.cro.croandroidsocketexample.models.ChatMessage;
 import xyz.cro.croandroidsocketexample.utils.Dlog;
 
-public class ChatActivity extends BaseActivity {
+public class ChatMessageActivity extends BaseActivity {
     @BindView(R.id.messagesView)
     RecyclerView messagesView;
     @BindView(R.id.messageEditText)
@@ -153,6 +153,7 @@ public class ChatActivity extends BaseActivity {
                 @Override
                 public void run() {
                     mAdapter.addItems(message);
+                    messagesView.smoothScrollToPosition(mAdapter.getItemCount());
                 }
             });
         }
@@ -187,6 +188,7 @@ public class ChatActivity extends BaseActivity {
             // 본인의 메시지는 서버에서 전달받지 않고, 바로 생성한다.
             ChatMessage message = new ChatMessage(null, Constants.MESSAGE_TYPE_SELF, userName, sendMessage);
             mAdapter.addItems(message);
+            messagesView.smoothScrollToPosition(mAdapter.getItemCount());
         } catch (JSONException e) {
             e.printStackTrace();
         }
