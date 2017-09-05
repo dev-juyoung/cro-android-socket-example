@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/sm_space"
+    android:padding="@dimen/sm_space"
+    android:orientation="vertical"
+    android:background="#AFC1CA">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/messageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/sm_fontsize"
+        android:textColor="@color/textDefault"
+        tools:text="시스템 메시지가 들어갈 영역"
+        />
+
+</LinearLayout>

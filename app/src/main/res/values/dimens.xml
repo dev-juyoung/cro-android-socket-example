@@ -7,6 +7,8 @@
     <dimen name="sm_space">8dp</dimen>
     <dimen name="default_space">16dp</dimen>
     <dimen name="lg_space">24dp</dimen>
+    <dimen name="xlg_space">32dp</dimen>
+    <dimen name="xxlg_space">40dp</dimen>
 
     <dimen name="xs_fontsize">10dp</dimen>
     <dimen name="sm_fontsize">12dp</dimen>

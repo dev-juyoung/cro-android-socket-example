@@ -3,6 +3,8 @@ package xyz.cro.croandroidsocketexample.activities;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -19,12 +21,15 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import xyz.cro.croandroidsocketexample.R;
+import xyz.cro.croandroidsocketexample.adapters.ChatMessageAdapter;
 import xyz.cro.croandroidsocketexample.bases.BaseActivity;
 import xyz.cro.croandroidsocketexample.bases.Constants;
 import xyz.cro.croandroidsocketexample.models.ChatMessage;
 import xyz.cro.croandroidsocketexample.utils.Dlog;
 
 public class ChatActivity extends BaseActivity {
+    @BindView(R.id.messagesView)
+    RecyclerView messagesView;
     @BindView(R.id.messageEditText)
     AppCompatEditText messageEditText;
     @BindView(R.id.sendButton)
@@ -37,6 +42,8 @@ public class ChatActivity extends BaseActivity {
 
     private Socket mSocket;
     private String userName;
+
+    private ChatMessageAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +63,7 @@ public class ChatActivity extends BaseActivity {
         Dlog.d("received username: " + userName);
 
         initializeView();
+        setupRecyclerView();
         setupSocketClient();
     }
 
@@ -83,6 +91,14 @@ public class ChatActivity extends BaseActivity {
             @Override
             public void afterTextChanged(Editable editable) {}
         });
+    }
+
+    private void setupRecyclerView() {
+        mAdapter = new ChatMessageAdapter(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        messagesView.setHasFixedSize(true);
+        messagesView.setLayoutManager(layoutManager);
+        messagesView.setAdapter(mAdapter);
     }
 
     private void setupSocketClient() {
@@ -127,11 +143,18 @@ public class ChatActivity extends BaseActivity {
             String messageOwner = rcvData.optJSONObject("data").optString("username");
             String messageContent = rcvData.optJSONObject("data").optString("message");
 
-            ChatMessage message = new ChatMessage(userAction, messageType, messageOwner, messageContent);
+            final ChatMessage message = new ChatMessage(userAction, messageType, messageOwner, messageContent);
             Dlog.d("action: " + message.getUserAction());
             Dlog.d("type: " + message.getMessageType());
             Dlog.d("owner: " + message.getMessageOwner());
             Dlog.d("message: " + message.getMessageContent());
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mAdapter.addItems(message);
+                }
+            });
         }
     };
 
@@ -163,6 +186,7 @@ public class ChatActivity extends BaseActivity {
 
             // 본인의 메시지는 서버에서 전달받지 않고, 바로 생성한다.
             ChatMessage message = new ChatMessage(null, Constants.MESSAGE_TYPE_SELF, userName, sendMessage);
+            mAdapter.addItems(message);
         } catch (JSONException e) {
             e.printStackTrace();
         }
